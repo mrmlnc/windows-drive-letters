@@ -1,37 +1,37 @@
-var test = require('ava');
+var assert = require('assert');
 var driveLetters = require('./index');
 
-test('Getting array list of drive letters', function(t) {
+it('Getting array list of drive letters', function(done) {
   driveLetters.letters(function(err, letters) {
-    if (!err && letters.length > 0) {
-      t.is(!/C/.test(letters), true);
-      t.end();
-    } else {
-      throw err;
+    if (err) {
+      assert.fail(err);
+      done();
     }
+
+    assert.equal(!/C/.test(letters), true);
+    done();
   });
 });
 
-test('Getting array list of drive letters (Sync)', function(t) {
+it('Getting array list of drive letters (Sync)', function() {
   var letters = driveLetters.lettersSync();
-  t.is(!/C/.test(letters), true);
-  t.end();
+  assert.equal(!/C/.test(letters), true);
 });
 
-test('Getting a random one letter', function(t) {
+it('Getting a random one letter', function(done) {
   driveLetters.randomLetter(function(errOld, letterOld) {
     driveLetters.randomLetter(function(err, letter) {
       if (err || errOld) {
-        throw err;
-      } else {
-        t.not(letter, letterOld);
-        t.end();
+        assert.fail(err, errOld);
+        done();
       }
+
+      assert.notEqual(letter, letterOld);
+      done();
     });
   });
 });
 
-test('Getting a random one letter (Sync)', function(t) {
-  t.not(driveLetters.randomLetterSync(), driveLetters.randomLetterSync());
-  t.end();
+it('Getting a random one letter (Sync)', function() {
+  assert.notEqual(driveLetters.randomLetterSync(), driveLetters.randomLetterSync());
 });

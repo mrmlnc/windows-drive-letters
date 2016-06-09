@@ -1,7 +1,7 @@
+var cp = require('child_process');
 var alphabet = require('alphabet');
 var arrDiff = require('arr-diff');
 var tableParser = require('table-parser');
-var cp = require('child_process');
 
 function getLetters(cb) {
   cp.exec('wmic logicaldisk get caption', function(err, stdout, stderr) {

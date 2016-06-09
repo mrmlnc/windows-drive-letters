@@ -9,7 +9,7 @@
     "url": "canonium.com"
   },
   "scripts": {
-    "test": "xo && node test.js"
+    "test": "xo && mocha"
   },
   "os": [
     "win32"
@@ -32,20 +32,21 @@
     "table-parser": "0.0.3"
   },
   "devDependencies": {
-    "ava": "^0.2.0",
-    "xo": "^0.9.0"
+    "mocha": "^2.5.3",
+    "xo": "^0.15.1"
   },
   "xo": {
-    "space": true,
     "rules": {
-      "object-curly-spacing": [
-        2,
-        "always"
-      ],
-      "space-before-function-paren": 0
+      "indent": [2, 2, { "SwitchCase": 1 }],
+      "arrow-parens": [2, "always"],
+      "object-curly-spacing": [2, "always"],
+      "babel/object-curly-spacing": 0,
+      "space-before-function-paren": [2, "never"],
+      "generator-star-spacing": [2, "after"]
     },
     "envs": [
-      "node"
+      "node",
+      "mocha"
     ]
   }
 }
