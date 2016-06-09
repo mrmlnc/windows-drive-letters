@@ -1,55 +1,63 @@
-var cp = require('child_process');
-var alphabet = require('alphabet');
-var arrDiff = require('arr-diff');
-var tableParser = require('table-parser');
+const childProcess = require('child_process');
+const tableParser = require('table-parser');
 
-function getLetters(cb) {
-  cp.exec('wmic logicaldisk get caption', function(err, stdout, stderr) {
-    if (err) {
-      cb(stderr);
-    } else {
-      var letters = tableParser.parse(stdout);
-      cb(null, letters.map(function(item) {
-        return item.Caption[0].replace(':', '');
-      }));
-    }
+const command = 'wmic logicaldisk get caption';
+
+function removeUsedLetters(usedLetters) {
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  for (let i = 0; i < usedLetters.length; i++) {
+    letters.splice(letters.indexOf(usedLetters[i]), 1);
+  }
+
+  return letters;
+}
+
+function letters() {
+  return new Promise((resolve, reject) => {
+    childProcess.exec(command, (err, stdout) => {
+      if (err) {
+        reject(err);
+      }
+
+      const letters = tableParser.parse(stdout).map((caption) => {
+        return caption.Caption[0].replace(':', '');
+      });
+
+      resolve(removeUsedLetters(letters));
+    });
   });
 }
 
-function getLettersSync() {
-  var stdout = cp.execSync('wmic logicaldisk get caption');
-  var letters = tableParser.parse(stdout.toString());
-  return letters.map(function(item) {
-    return item.Caption[0].replace(':', '');
+module.exports.letters = letters;
+
+function randomLetter() {
+  return new Promise((resolve, reject) => {
+    letters()
+      .then((letters) => {
+        const index = Math.floor(Math.random() * letters.length);
+        resolve(letters[index]);
+      })
+      .catch(reject);
   });
 }
 
-module.exports.letters = function(cb) {
-  getLetters(function(err, letters) {
-    if (err) {
-      cb(err);
-    } else {
-      cb(null, arrDiff(alphabet.upper, letters));
-    }
+module.exports.randomLetter = randomLetter;
+
+function lettersSync() {
+  const stdout = childProcess.execSync(command);
+  const letters = tableParser.parse(stdout.toString()).map((caption) => {
+    return caption.Caption[0].replace(':', '');
   });
-};
 
-module.exports.lettersSync = function() {
-  var letters = getLettersSync();
-  return arrDiff(alphabet.upper, letters);
-};
+  return removeUsedLetters(letters);
+}
 
-module.exports.randomLetter = function(cb) {
-  getLetters(function(err, letters) {
-    if (err) {
-      cb(err);
-    } else {
-      cb(null, letters[Math.floor(Math.random() * letters.length)]);
-    }
-  });
-};
+module.exports.lettersSync = lettersSync;
 
-module.exports.randomLetterSync = function() {
-  var letters = arrDiff(alphabet.upper, getLettersSync());
-  return letters[Math.floor(Math.random() * letters.length)];
-};
+function randomLetterSync() {
+  const letters = lettersSync();
+  const index = Math.floor(Math.random() * letters.length);
+  return letters[index];
+}
+
+module.exports.randomLetterSync = randomLetterSync;

@@ -9,12 +9,10 @@ Get a list of all available drive letters for use:
 #### .letters()
 
 ```js
-driveLetters.letters(function(err, letters) {
-  if (err) {
-    throw err;
-  } else {
-    console.log(letters);
-  }
+driveLetters.letters().then((letters) => {
+  console.log(letters);
+}).catch((err) => {
+  console.error(err);
 });
 
 // => ['A', 'B', ...]
@@ -34,12 +32,10 @@ console.log(letters);
 Getting a random one letter available for use:
 
 ```js
-driveLetters.randomLetter(function(err, letter) {
-  if (err) {
-    throw err;
-  } else {
-    console.log(letter);
-  }
+driveLetters.randomLetter().then((letter) => {
+  console.log(letter);
+}).catch((err) => {
+  console.error(err);
 });
 
 // => 'A'
@@ -60,6 +56,10 @@ console.log(letter);
 // => 'K'
 ```
 
+## Changelog
+
+See the [Releases section of our GitHub project](https://github.com/mrmlnc/windows-drive-letters/releases) for changelogs for each release version.
+
 ## License
 
-MIT.
+This software is released under the terms of the MIT license.

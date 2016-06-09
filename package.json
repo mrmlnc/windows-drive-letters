@@ -8,12 +8,15 @@
     "name": "Denis Malinochkin",
     "url": "canonium.com"
   },
-  "scripts": {
-    "test": "xo && mocha --timeout=10000"
+  "engines": {
+    "node": ">=4.0.0"
   },
   "os": [
     "win32"
   ],
+  "scripts": {
+    "test": "xo && mocha --timeout=5000"
+  },
   "files": [
     "index.js"
   ],
@@ -26,8 +29,6 @@
     "letters"
   ],
   "dependencies": {
-    "alphabet": "^1.0.0",
-    "arr-diff": "^3.0.0",
     "table-parser": "0.1.1"
   },
   "devDependencies": {

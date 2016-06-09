@@ -1,37 +1,30 @@
-var assert = require('assert');
-var driveLetters = require('./index');
+const assert = require('assert');
+const m = require('./index');
 
-it('Getting array list of drive letters', function(done) {
-  driveLetters.letters(function(err, letters) {
-    if (err) {
-      assert.fail(err);
-      done();
-    }
-
-    assert.equal(!/C/.test(letters), true);
-    done();
+describe('Asynchronous', () => {
+  it('Should give the free letters', () => {
+    return m.letters()
+      .then((letters) => {
+        assert.ok(letters.indexOf('C') === -1);
+      });
   });
-});
 
-it('Getting array list of drive letters (Sync)', function() {
-  var letters = driveLetters.lettersSync();
-  assert.equal(!/C/.test(letters), true);
-});
-
-it('Getting a random one letter', function(done) {
-  driveLetters.randomLetter(function(errOld, letterOld) {
-    driveLetters.randomLetter(function(err, letter) {
-      if (err || errOld) {
-        assert.fail(err, errOld);
-        done();
-      }
-
-      assert.notEqual(letter, letterOld);
-      done();
+  it('Should give a random letter', () => {
+    return Promise.all([
+      m.randomLetter(),
+      m.randomLetter()
+    ]).then((letters) => {
+      assert.notEqual(letters[0], letters[1]);
     });
   });
 });
 
-it('Getting a random one letter (Sync)', function() {
-  assert.notEqual(driveLetters.randomLetterSync(), driveLetters.randomLetterSync());
+describe('Synchronous', () => {
+  it('Should give the free letters', () => {
+    assert.ok(m.lettersSync().indexOf('C') === -1);
+  });
+
+  it('Should give a random letter', () => {
+    assert.notEqual(m.randomLetterSync(), m.randomLetterSync());
+  });
 });
