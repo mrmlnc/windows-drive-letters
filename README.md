@@ -2,6 +2,11 @@
 
 > Get a list of available drive letters for use.
 
+[![AppVeyor](https://img.shields.io/appveyor/ci/mrmlnc/windows-drive-letters.svg?style=flat-square)](https://ci.appveyor.com/project/mrmlnc/windows-drive-letters)
+[![NPM version](https://img.shields.io/npm/v/windows-drive-letters.svg?style=flat-square)](https://www.npmjs.com/package/windows-drive-letters)
+[![devDependency Status](https://img.shields.io/david/mrmlnc/windows-drive-letters.svg?style=flat-square)](https://david-dm.org/mrmlnc/windows-drive-letters#info=dependencies)
+[![devDependency Status](https://img.shields.io/david/dev/mrmlnc/windows-drive-letters.svg?style=flat-square)](https://david-dm.org/mrmlnc/windows-drive-letters#info=devDependencies)
+
 ## Install
 
 ```
