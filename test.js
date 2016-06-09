@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 const m = require('./index');
 
@@ -12,9 +14,10 @@ describe('Asynchronous', () => {
   it('Should give a random letter', () => {
     return Promise.all([
       m.randomLetter(),
+      m.randomLetter(),
       m.randomLetter()
     ]).then((letters) => {
-      assert.notEqual(letters[0], letters[1]);
+      assert.ok(letters[0] !== letters[1] || letters[0] !== letters[2]);
     });
   });
 });
@@ -25,6 +28,12 @@ describe('Synchronous', () => {
   });
 
   it('Should give a random letter', () => {
-    assert.notEqual(m.randomLetterSync(), m.randomLetterSync());
+    const letters = [
+      m.randomLetterSync(),
+      m.randomLetterSync(),
+      m.randomLetterSync()
+    ];
+
+    assert.ok(letters[0] !== letters[1] || letters[0] !== letters[2]);
   });
 });

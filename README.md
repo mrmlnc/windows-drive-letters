@@ -1,59 +1,55 @@
 # windows-drive-letters
 
-Get a list of available drive letters for use.
+> Get a list of available drive letters for use.
+
+## Install
+
+```
+$ npm i -S windows-drive-letters
+```
 
 ## Usage
 
+### letters & lettersSync
+
 Get a list of all available drive letters for use:
 
-#### .letters()
+**Asynchronous**
 
 ```js
 driveLetters.letters().then((letters) => {
-  console.log(letters);
+  console.log(letters); // => ['A', 'B', ...]
 }).catch((err) => {
-  console.error(err);
+  console.error(err);s
 });
-
-// => ['A', 'B', ...]
 ```
 
-#### .lettersSync()
+**Synchronous**
 
 ```js
-var letters = driveLetters.lettersSync();
-console.log(letters);
-
-// => ['A', 'B', ...]
+const letters = driveLetters.lettersSync();
+console.log(letters); // => ['A', 'B', ...]
 ```
 
-#### .randomLetter()
+### randomLetter & randomLetterSync
 
-Getting a random one letter available for use:
+Get a random letter, available for use:
+
+**Asynchronous**
 
 ```js
 driveLetters.randomLetter().then((letter) => {
-  console.log(letter);
+  console.log(letter); // => 'Q'
 }).catch((err) => {
   console.error(err);
 });
-
-// => 'A'
-// => 'Q'
-// => 'Z'
 ```
 
-#### .randomLetterSync()
+**Synchronous**
 
 ```js
-var letter = driveLetters.randomLetterSync();
-console.log(letter);
-console.log(letter);
-console.log(letter);
-
-// => 'G'
-// => 'N'
-// => 'K'
+const letter = driveLetters.randomLetterSync();
+console.log(letter); // => 'N'
 ```
 
 ## Changelog
