@@ -15,7 +15,6 @@
     "win32"
   ],
   "files": [
-    "README.md",
     "index.js"
   ],
   "keywords": [
@@ -28,8 +27,8 @@
   ],
   "dependencies": {
     "alphabet": "^1.0.0",
-    "arr-diff": "^1.1.0",
-    "table-parser": "0.0.3"
+    "arr-diff": "^3.0.0",
+    "table-parser": "0.1.1"
   },
   "devDependencies": {
     "mocha": "^2.5.3",
