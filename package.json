@@ -9,7 +9,7 @@
     "url": "canonium.com"
   },
   "scripts": {
-    "test": "xo && mocha"
+    "test": "xo && mocha --timeout=10000"
   },
   "os": [
     "win32"
