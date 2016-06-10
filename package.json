@@ -1,6 +1,6 @@
 {
   "name": "windows-drive-letters",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "List of available drive letters for use in Windows OS",
   "license": "MIT",
   "repository": "mrmlnc/windows-drive-letters",
