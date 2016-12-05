@@ -32,6 +32,24 @@ function letters() {
 
 module.exports.letters = letters;
 
+function usedLetters() {
+  return new Promise((resolve, reject) => {
+    childProcess.exec(command, (err, stdout) => {
+      if (err) {
+        reject(err);
+      }
+
+      const letters = tableParser.parse(stdout).map((caption) => {
+        return caption.Caption[0].replace(':', '');
+      });
+
+      resolve(letters);
+    });
+  });
+}
+
+module.exports.usedLetters = usedLetters;
+
 function randomLetter() {
   return new Promise((resolve, reject) => {
     letters()
@@ -44,6 +62,17 @@ function randomLetter() {
 }
 
 module.exports.randomLetter = randomLetter;
+
+function usedLettersSync() {
+  const stdout = childProcess.execSync(command);
+  const letters = tableParser.parse(stdout.toString()).map((caption) => {
+    return caption.Caption[0].replace(':', '');
+  });
+
+  return letters;
+}
+
+module.exports.usedLettersSync = usedLettersSync;
 
 function lettersSync() {
   const stdout = childProcess.execSync(command);

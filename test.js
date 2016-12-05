@@ -11,6 +11,13 @@ describe('Asynchronous', () => {
       });
   });
 
+  it('Should give the used letters', () => {
+    return m.usedLetters()
+      .then((letters) => {
+        assert.ok(letters.indexOf('C') >= 0);
+      });
+  });
+
   it('Should give a random letter', () => {
     return Promise.all([
       m.randomLetter(),
@@ -25,6 +32,10 @@ describe('Asynchronous', () => {
 describe('Synchronous', () => {
   it('Should give the free letters', () => {
     assert.ok(m.lettersSync().indexOf('C') === -1);
+  });
+
+  it('Should give the used letters', () => {
+    assert.ok(m.usedLettersSync().indexOf('C') >= 0);
   });
 
   it('Should give a random letter', () => {
