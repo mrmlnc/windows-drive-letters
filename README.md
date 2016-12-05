@@ -25,7 +25,7 @@ Get a list of all available drive letters for use:
 driveLetters.letters().then((letters) => {
   console.log(letters); // => ['A', 'B', ...]
 }).catch((err) => {
-  console.error(err);s
+  console.error(err);
 });
 ```
 
@@ -42,9 +42,9 @@ Get a list of all available drive letters that are used (in use):
 
 ```js
 driveLetters.usedLetters().then((letters) => {
-  console.log(letters); // => ['A', 'B', ...]
+  console.log(letters); // => ['C', 'D', ...]
 }).catch((err) => {
-  console.error(err);s
+  console.error(err);
 });
 ```
 
@@ -52,7 +52,7 @@ driveLetters.usedLetters().then((letters) => {
 
 ```js
 const letters = driveLetters.usedLettersSync();
-console.log(letters); // => ['A', 'B', ...]
+console.log(letters); // => ['C', 'D', ...]
 ```
 
 ### randomLetter & randomLetterSync
