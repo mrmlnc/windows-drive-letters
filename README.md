@@ -36,6 +36,25 @@ const letters = driveLetters.lettersSync();
 console.log(letters); // => ['A', 'B', ...]
 ```
 
+Get a list of all available drive letters that are used (in use):
+
+**Asynchronous**
+
+```js
+driveLetters.usedLetters().then((letters) => {
+  console.log(letters); // => ['A', 'B', ...]
+}).catch((err) => {
+  console.error(err);s
+});
+```
+
+**Synchronous**
+
+```js
+const letters = driveLetters.usedLettersSync();
+console.log(letters); // => ['A', 'B', ...]
+```
+
 ### randomLetter & randomLetterSync
 
 Get a random letter, available for use:
