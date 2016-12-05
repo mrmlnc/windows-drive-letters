@@ -18,7 +18,7 @@ function letters() {
   return new Promise((resolve, reject) => {
     childProcess.exec(command, (err, stdout) => {
       if (err) {
-        reject(err);
+        return reject(err);
       }
 
       const letters = tableParser.parse(stdout).map((caption) => {
@@ -36,7 +36,7 @@ function usedLetters() {
   return new Promise((resolve, reject) => {
     childProcess.exec(command, (err, stdout) => {
       if (err) {
-        reject(err);
+        return reject(err);
       }
 
       const letters = tableParser.parse(stdout).map((caption) => {
