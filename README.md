@@ -1,5 +1,7 @@
 # windows-drive-letters
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mrmlnc/windows-drive-letters.svg)](https://greenkeeper.io/)
+
 > Get a list of available drive letters for use.
 
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/b707ardgrdf0lwa3?svg=true)](https://ci.appveyor.com/project/mrmlnc/windows-drive-letters)
