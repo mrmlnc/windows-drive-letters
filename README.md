@@ -2,84 +2,75 @@
 
 > Get a list of available drive letters for use.
 
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/b707ardgrdf0lwa3?svg=true)](https://ci.appveyor.com/project/mrmlnc/windows-drive-letters)
-[![NPM version](https://img.shields.io/npm/v/windows-drive-letters.svg?style=flat-square)](https://www.npmjs.com/package/windows-drive-letters)
-[![devDependency Status](https://img.shields.io/david/mrmlnc/windows-drive-letters.svg?style=flat-square)](https://david-dm.org/mrmlnc/windows-drive-letters#info=dependencies)
-[![devDependency Status](https://img.shields.io/david/dev/mrmlnc/windows-drive-letters.svg?style=flat-square)](https://david-dm.org/mrmlnc/windows-drive-letters#info=devDependencies)
+## Donation
 
-## Install
+Do you like this project? Support it by donating, creating an issue or pull request.
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)][paypal_mrmlnc]
+
+## Installation
+
+```console
+npm install windows-drive-letters
 ```
-$ npm i -S windows-drive-letters
-```
 
-## Usage
+## API
 
-### letters & lettersSync
+### free
 
-Get a list of all available drive letters for use:
-
-**Asynchronous**
+Returns a `Promise` with an array of free letters.
 
 ```js
-driveLetters.letters().then((letters) => {
-  console.log(letters); // => ['A', 'B', ...]
-}).catch((err) => {
-  console.error(err);
-});
+const letters = await wdl.free();
 ```
 
-**Synchronous**
+### freeSync
+
+Returns an array of free letters.
 
 ```js
-const letters = driveLetters.lettersSync();
-console.log(letters); // => ['A', 'B', ...]
+const letters = wdl.freeSync();
 ```
 
-Get a list of all available drive letters that are used (in use):
+### used
 
-**Asynchronous**
+Returns a `Promise` with an array of used letters.
 
 ```js
-driveLetters.usedLetters().then((letters) => {
-  console.log(letters); // => ['C', 'D', ...]
-}).catch((err) => {
-  console.error(err);
-});
+const letters = await wdl.used();
 ```
 
-**Synchronous**
+### usedSync
+
+Returns an array of used letters.
 
 ```js
-const letters = driveLetters.usedLettersSync();
-console.log(letters); // => ['C', 'D', ...]
+const letters = wdl.usedSync();
 ```
 
-### randomLetter & randomLetterSync
+### randomFree
 
-Get a random letter, available for use:
-
-**Asynchronous**
+Returns a `Promise` with a random free letter.
 
 ```js
-driveLetters.randomLetter().then((letter) => {
-  console.log(letter); // => 'Q'
-}).catch((err) => {
-  console.error(err);
-});
+const letter = await wdl.random();
 ```
 
-**Synchronous**
+### randomFreeSync
+
+Returns a random free letter.
 
 ```js
-const letter = driveLetters.randomLetterSync();
-console.log(letter); // => 'N'
+const letter = wdl.randomSync();
 ```
 
 ## Changelog
 
-See the [Releases section of our GitHub project](https://github.com/mrmlnc/windows-drive-letters/releases) for changelogs for each release version.
+See the [Releases section of our GitHub project][github_releases] for changelog for each release version.
 
 ## License
 
 This software is released under the terms of the MIT license.
+
+[paypal_mrmlnc]:https://paypal.me/mrmlnc
+[github_releases]: https://github.com/mrmlnc/windows-drive-letters/releases
