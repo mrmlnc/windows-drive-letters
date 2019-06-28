@@ -15,6 +15,10 @@ function removeUsedLetters(usedLetters) {
 }
 
 function letters() {
+  if (!isWinOs()) {
+    throw (new Error('windows-drive-letters can only run on windows.'));
+  }
+
   return new Promise((resolve, reject) => {
     childProcess.exec(command, (err, stdout) => {
       if (err) {
@@ -33,6 +37,10 @@ function letters() {
 module.exports.letters = letters;
 
 function usedLetters() {
+  if (!isWinOs()) {
+    throw (new Error('windows-drive-letters can only run on windows.'));
+  }
+
   return new Promise((resolve, reject) => {
     childProcess.exec(command, (err, stdout) => {
       if (err) {
@@ -64,6 +72,10 @@ function randomLetter() {
 module.exports.randomLetter = randomLetter;
 
 function usedLettersSync() {
+  if (!isWinOs()) {
+    throw (new Error('windows-drive-letters can only run on windows.'));
+  }
+
   const stdout = childProcess.execSync(command);
   const letters = tableParser.parse(stdout.toString()).map((caption) => {
     return caption.Caption[0].replace(':', '');
@@ -75,6 +87,10 @@ function usedLettersSync() {
 module.exports.usedLettersSync = usedLettersSync;
 
 function lettersSync() {
+  if (!isWinOs()) {
+    throw (new Error('windows-drive-letters can only run on windows.'));
+  }
+
   const stdout = childProcess.execSync(command);
   const letters = tableParser.parse(stdout.toString()).map((caption) => {
     return caption.Caption[0].replace(':', '');
@@ -92,3 +108,7 @@ function randomLetterSync() {
 }
 
 module.exports.randomLetterSync = randomLetterSync;
+
+function isWinOs() {
+  return /^win/.test(process.platform);
+}
