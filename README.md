@@ -53,7 +53,7 @@ const letters = wdl.usedSync();
 Returns a `Promise` with a random free letter.
 
 ```js
-const letter = await wdl.random();
+const letter = await wdl.randomFree();
 ```
 
 ### randomFreeSync
@@ -61,7 +61,7 @@ const letter = await wdl.random();
 Returns a random free letter.
 
 ```js
-const letter = wdl.randomSync();
+const letter = wdl.randomFreeSync();
 ```
 
 ## Changelog
