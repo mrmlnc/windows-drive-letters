@@ -1,0 +1,20 @@
+trigger:
+  branches:
+    include:
+      - master
+      - releases/*
+
+jobs:
+  - job: Windows
+    strategy:
+      matrix:
+        (Node.js 8): { node_version: 8.x }
+        (Node.js 10): { node_version: 10.x }
+        (Node.js 12): { node_version: 12.x }
+    pool:
+      vmImage: 'windows-2019'
+    steps:
+      - template: steps-build.yml
+        parameters:
+          node_version: $(node_version)
+      - template: steps-tests.yml
